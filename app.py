@@ -38,13 +38,13 @@ if st.button("Generate Certificate"):
             pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
 
                        
-            pdf.ln(60)
+            pdf.ln(62)
 
             pdf.set_font("Arial", 'B', 20)
-            pdf.set_x(80)
+            pdf.set_x(90)
             pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
             pdf.ln(1)
-            pdf.set_x(15)
+            pdf.set_x(40)
             pdf.set_font("Arial", size=16)
             pdf.cell(200, 10, txt=f"{designation}, {college}", ln=True, align='C')
             
