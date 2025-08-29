@@ -1,50 +1,62 @@
 import streamlit as st
 import pandas as pd
 from fpdf import FPDF
+import re
 
 # Load Excel data
-@st.cache_data
-def load_data():
-    return pd.read_excel("registrations.xlsx")
+df = pd.read_excel("registrations.xlsx")  # Make sure columns: Name, Mail, Designation, College
 
-df = load_data()
-
-# UI
 st.title("🎓 Certificate Generator")
 
-name = st.text_input("Enter your Name")
-designation = st.text_input("Enter your Designation")
-college = st.text_input("Enter your College Name")
+# Input fields
+email_input = st.text_input("Enter your registered Email")
 
-# Validate and generate
+# Email validation
+def is_valid_email(email):
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email)
+
+# On button click
 if st.button("Generate Certificate"):
-    match = df[
-        (df['Name'].str.strip().str.lower() == name.strip().lower()) &
-        (df['Designation'].str.strip().str.lower() == designation.strip().lower()) &
-        (df['College Name'].str.strip().str.lower() == college.strip().lower())
-    ]
-
-    if not match.empty:
-        # Create PDF
-        pdf = FPDF(orientation='L', unit='mm', format='A4')
-        pdf.add_page()
-        pdf.image("Blue and Yellow Vector Modern Completion Certificate.png", x=0, y=0, w=297, h=210)
-        pdf.ln(65)
-        pdf.set_font("Arial", 'B', 18)
-        pdf.set_x(70)
-        pdf.cell(200, 10, txt=name, ln=True, align='C')
-        pdf.set_font("Arial", size=16)
-        pdf.ln(1)
-        pdf.cell(200, 10, txt=f"{designation}, {college}", ln=True, align='C')
-        file_name = f"{name}_certificate.pdf"
-        pdf.output(file_name)
-
-        with open(file_name, "rb") as f:
-            st.download_button(
-                label="📥 Download Your Certificate",
-                data=f,
-                file_name=file_name,
-                mime="application/pdf"
-            )
+    if not is_valid_email(email_input):
+        st.warning("⚠️ Please enter a valid email address.")
     else:
-        st.error("🚫 Not registered! Please check your details.")
+        # Search for matching row by email (case-insensitive)
+        match = df[df['Mail'].str.strip().str.lower() == email_input.strip().lower()]
+        
+        if not match.empty:
+            row = match.iloc[0]  # Get the first matched row
+            name = row['Name']
+            designation = row['Designation']
+            college = row['College']
+
+            # Generate PDF Certificate
+            pdf = FPDF(orientation='L', unit='mm', format='A4')
+            pdf.add_page()
+
+            # Background image (optional)
+            pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
+
+                       
+            pdf.ln(70)
+
+            pdf.set_font("Arial", 'B', 20)
+            pdf.set_x(65)
+            pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
+            pdf.ln(1)
+
+            pdf.set_font("Arial", size=16)
+            pdf.cell(200, 10, txt=f"{designation}, {college}", ln=True, align='C')
+            pdf.ln(20)
+
+            pdf.cell(0, 10, txt="has successfully participated in the event.", ln=True, align='C')
+
+            # Save and show download button
+            cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
+            pdf.output(cert_filename)
+
+            with open(cert_filename, "rb") as f:
+                st.success("✅ Certificate generated successfully!")
+                st.download_button("📥 Download Certificate", f, file_name=cert_filename, mime="application/pdf")
+        else:
+            st.error("❌ Email not found in the records.")
