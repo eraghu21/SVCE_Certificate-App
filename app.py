@@ -26,7 +26,7 @@ if st.button("Generate Certificate"):
 
     if not match.empty:
         # Create PDF
-        pdf = FPDF()
+        pdf = FPDF(orientation='L', unit='mm', format='A4')
         pdf.add_page()
         pdf.set_font("Arial", size=24)
         pdf.cell(200, 10, txt="Certificate of Participation", ln=True, align='C')
