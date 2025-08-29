@@ -28,7 +28,7 @@ if st.button("Generate Certificate"):
         # Create PDF
         pdf = FPDF(orientation='L', unit='mm', format='A4')
         pdf.add_page()
-        pdf.image("certificate_bg.jpg", x=0, y=0, w=297, h=210)
+        pdf.image("Blue and Yellow Vector Modern Completion Certificate.png", x=0, y=0, w=297, h=210)
         # pdf.set_font("Arial", size=24)
        # pdf.cell(200, 10, txt="Certificate of Participation", ln=True, align='C')
         pdf.ln(20)
