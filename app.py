@@ -38,10 +38,10 @@ if st.button("Generate Certificate"):
             pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
 
                        
-            pdf.ln(70)
+            pdf.ln(65)
 
             pdf.set_font("Arial", 'B', 20)
-            pdf.set_x(65)
+            pdf.set_x(70)
             pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
             pdf.ln(1)
 
