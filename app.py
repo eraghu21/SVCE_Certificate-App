@@ -42,7 +42,9 @@ if st.button("Generate Certificate"):
 
             pdf.set_font("Arial", 'B', 20)
             pdf.set_x(90)
-            pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
+            #pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
+            pdf.cell(140, 10, txt=name, ln=0, align='L')       # Left side (140 mm width)
+            pdf.cell(140, 10, txt=designation, ln=1, align='R') # Right side (140 mm width)
             pdf.ln(1)
             pdf.set_x(40)
             pdf.set_font("Arial", size=16)
