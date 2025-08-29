@@ -31,7 +31,7 @@ if st.button("Generate Certificate"):
         pdf.image("Blue and Yellow Vector Modern Completion Certificate.png", x=0, y=0, w=297, h=210)
         pdf.ln(65)
         pdf.set_font("Arial", 'B', 18)
-        pdf.set_x(55)
+        pdf.set_x(70)
         pdf.cell(200, 10, txt=name, ln=True, align='C')
         pdf.set_font("Arial", size=16)
         pdf.ln(1)
