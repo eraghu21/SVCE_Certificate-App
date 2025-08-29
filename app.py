@@ -38,19 +38,16 @@ if st.button("Generate Certificate"):
             pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
 
                        
-            pdf.ln(65)
+            pdf.ln(60)
 
             pdf.set_font("Arial", 'B', 20)
-            pdf.set_x(70)
+            pdf.set_x(80)
             pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
             pdf.ln(1)
-
+            pdf.set_x(15)
             pdf.set_font("Arial", size=16)
             pdf.cell(200, 10, txt=f"{designation}, {college}", ln=True, align='C')
-            pdf.ln(20)
-
-            pdf.cell(0, 10, txt="has successfully participated in the event.", ln=True, align='C')
-
+            
             # Save and show download button
             cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
             pdf.output(cert_filename)
