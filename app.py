@@ -28,7 +28,7 @@ if st.button("Generate Certificate"):
             row = match.iloc[0]  # Get the first matched row
             name = row['Name']
             designation = row['Designation']
-            college = row['College']
+            college = row['College Name']
 
             # Generate PDF Certificate
             pdf = FPDF(orientation='L', unit='mm', format='A4')
