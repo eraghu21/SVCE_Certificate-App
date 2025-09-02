@@ -2,53 +2,64 @@ import streamlit as st
 import pandas as pd
 from fpdf import FPDF
 import re
+import pyAesCrypt
+import requests
+import os
 
-# Load Excel data
-df = pd.read_excel("registrations.xlsx")  # Make sure columns: Name, Mail, Designation, College
+st.title("🎓 Encrypted Certificate Generator")
 
-st.title("🎓 Certificate Generator")
+# Parameters
+buffer_size = 64 * 1024
+password = st.secrets["excel_password"]
+encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
 
-# Input fields
+# Download and decrypt encrypted Excel
+enc_file = "registrations.xlsx.aes"
+dec_file = "registrations.xlsx"
+
+try:
+    with open(enc_file, "wb") as f:
+        f.write(requests.get(encrypted_url).content)
+
+    pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
+    df = pd.read_excel(dec_file)
+    os.remove(dec_file)  # optional cleanup
+
+except Exception as e:
+    st.error(f"Error loading data: {e}")
+    st.stop()
+
+# Input field
 email_input = st.text_input("Enter your registered Email")
 
-# Email validation
 def is_valid_email(email):
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(pattern, email)
 
-# On button click
 if st.button("Generate Certificate"):
     if not is_valid_email(email_input):
         st.warning("⚠️ Please enter a valid email address.")
     else:
-        # Search for matching row by email (case-insensitive)
         match = df[df['Mail'].str.strip().str.lower() == email_input.strip().lower()]
         
         if not match.empty:
-            row = match.iloc[0]  # Get the first matched row
+            row = match.iloc[0]
             name = row['Name']
             designation = row['Designation']
             college = row['College Name']
 
-            # Generate PDF Certificate
             pdf = FPDF(orientation='L', unit='mm', format='A4')
             pdf.add_page()
-
-            # Background image (optional)
             pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
-
-                       
             pdf.ln(62)
-
             pdf.set_font("Arial", 'B', 20)
             pdf.set_x(90)
             pdf.cell(200, 12, txt=name.strip(), ln=True, align='C')
             pdf.ln(1)
             pdf.set_x(40)
             pdf.set_font("Arial", size=16)
-            #pdf.cell(200, 10, txt=f"{designation}, {college}", ln=True, align='C')
             pdf.cell(200, 10, txt=f"{college}", ln=True, align='C')
-            # Save and show download button
+
             cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
             pdf.output(cert_filename)
 
