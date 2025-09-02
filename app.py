@@ -10,7 +10,7 @@ st.title("🎓 SVCE FDP Certificate Generator")
 
 # Parameters
 buffer_size = 64 * 1024
-password = st.secrets["QPmzAL"]
+password = st.secrets["excel_password"]
 encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
 
 # Download and decrypt encrypted Excel
