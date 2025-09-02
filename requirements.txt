@@ -1,7 +1,6 @@
 streamlit
 pandas
 fpdf
-openpyxl
 pyAesCrypt
 openpyxl
 requests
