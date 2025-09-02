@@ -4,7 +4,7 @@ from fpdf import FPDF
 import re
 
 # Load Excel data
-df = pd.read_excel("data.xlsx.aes")  # Make sure columns: Name, Mail, Designation, College
+df = pd.read_excel("registrations.xlsx")  # Make sure columns: Name, Mail, Designation, College
 
 st.title("🎓 Certificate Generator")
 
