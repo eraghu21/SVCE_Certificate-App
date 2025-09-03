@@ -67,4 +67,4 @@ if st.button("Generate Certificate"):
                 st.success("✅ Certificate generated successfully!")
                 st.download_button("📥 Download Certificate", f, file_name=cert_filename, mime="application/pdf")
         else:
-            st.error("❌ Email not found in the records.")
+            st.error("❌ Participant Email not found in the Registration record.")
