@@ -5,9 +5,14 @@ import re
 import pyAesCrypt
 import requests
 import os
+from PIL import Image
 
 st.title("🎓 SVCE FDP(Sep 8 to Sep 12) Certificate Generator")
+# Load the image from a file
+image = Image.open('svce.png')
 
+# Display the image using st.image()
+st.image(image)
 # Parameters
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
