@@ -9,7 +9,7 @@ from PIL import Image
 
 st.title("🎓 SVCE FDP(Sep 8 to Sep 12) Certificate Generator")
 # Load the image from a file
-image = Image.open('svce.png')
+image = Image.open('svce_logo.jpg')
 
 # Display the image using st.image()
 st.image(image)
