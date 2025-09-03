@@ -6,7 +6,7 @@ import pyAesCrypt
 import requests
 import os
 
-st.title("🎓 SVCE FDP Certificate Generator")
+st.title("🎓 SVCE FDP(Sep 8 to Sep 12) Certificate Generator")
 
 # Parameters
 buffer_size = 64 * 1024
