@@ -11,7 +11,7 @@ from PIL import Image
 # ====================== PAGE CONFIG ======================
 st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered")
 
-# ====================== VISIT COUNTER ======================
+# ====================== VISIT & DOWNLOADS COUNTER ======================
 def update_visit_count():
     count_file = "counter.txt"
     if not os.path.exists(count_file):
@@ -31,6 +31,8 @@ def update_visit_count():
     return count
 
 visit_count = update_visit_count()
+
+
 def update_download_count():
     count_file = "downloads.txt"
     if not os.path.exists(count_file):
@@ -87,9 +89,7 @@ st.title("SVCE FDP Certificate Generator")
 
 # Visit Counter Display
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
-# download Counter Display
-📥 <b>Total Certificates Downloaded:</b> {download_total}<br>
-
+st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Downloads: {download_total}</div>", unsafe_allow_html=True)
 # ====================== CERTIFICATE VALIDATION ======================
 # Parameters
 buffer_size = 64 * 1024
