@@ -12,7 +12,7 @@ st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered
 
 banner = Image.open("brochure.png")  # Replace with your banner image
 #st.image(banner, use_container_width=True)
-banner = banner.resize((900, 250))  # Resize to your preferred size
+banner = banner.resize((500, 250))  # Resize to your preferred size
 st.image(banner)
 # ====================== STYLE ======================
 # Logo in top-center
@@ -123,23 +123,14 @@ if st.button("Generate Certificate"):
         else:
             st.error("❌ Email not found in the Registration records.")
 
-# ====================== FDP BROCHURE ======================
-    st.markdown("""
-    **Quantum AI: Educating the Next Generation of Professionals**  
-    📅 08–12 September 2025  
-    🕕 6:00 PM – 7:00 PM (Monday to Friday)  
-    📍 **Mode:** Online  
-    🏫 **Organized by:** Dept. of Computer Science and Engineering, SVCE
-    """)
 
 # ====================== FOOTER ======================
 st.markdown("""---""")
 st.markdown(
     """
     <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed by <b>Raghuvaran E</b><br>
-        Assistant Professor<br>
-        Department Of CSE<br>
+        Developed by <b>Raghuvaran E / Assistant Professor</b><br>
+         Department Of CSE<br>
         Sri Venkateswara College of Engineering - Dept. of CSE<br>
         <i>Quantum AI FDP 2025</i><br>
         📧 <a href="mailto:raghuvarane@svce.ac.in">raghuvarane@svce.ac.in</a>
