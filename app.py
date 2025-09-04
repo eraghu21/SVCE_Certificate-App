@@ -67,7 +67,7 @@ if st.button("Generate Certificate"):
                # Name + Designation (uppercase)
                 pdf.set_font("Arial", 'B', 20)
                 #pdf.set_x(100)
-                pdf.cell(0, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
+                pdf.cell(95, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
 
                 # College (uppercase)
                 pdf.ln(2)
