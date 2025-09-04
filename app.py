@@ -7,9 +7,14 @@ import requests
 import os
 import base64
 
-def set_background(image_path):
+def set_background(image_path, width='80%', height='80%'):
     """
-    Inject CSS to set a full-page background using a local image.
+    Set a local background image with explicit width and height.
+    
+    Parameters:
+    - image_path: Local image file path
+    - width: e.g., '100%', '1920px'
+    - height: e.g., '100%', '1080px'
     """
     with open(image_path, "rb") as img_file:
         img_base64 = base64.b64encode(img_file.read()).decode()
@@ -17,19 +22,20 @@ def set_background(image_path):
     st.markdown(
         f"""
         <style>
-            .stApp {{
-                background: url("data:image/png;base64,{img_base64}");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }}
+        .stApp {{
+            background-image: url("data:image/png;base64,{img_base64}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: {width} {height};
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Apply the background at the very start of your app
-set_background("brochure.png")  # Adjust the file path if needed
+# Example usage
+set_background("brochure.png", width='700px', height='700px')  # You can adjust the size
+
 
 st.title("🎓 SVCE FDP Certificate Generator")
 
