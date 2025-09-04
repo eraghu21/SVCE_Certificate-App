@@ -5,29 +5,6 @@ import re
 import pyAesCrypt
 import requests
 import os
-import base64
-
-def set_background(image_path, width='100%', height='100%'):
-     with open(image_path, "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{img_base64}");
-            background-repeat: no-repeat;
-            background-position: Top;
-            background-size: {width} {height};
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-# Example usage
-set_background("brochure.png", width='500px', height='500px')  # You can adjust the size
-
 
 st.title("🎓 SVCE FDP Certificate Generator")
 
