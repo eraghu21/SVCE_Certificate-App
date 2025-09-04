@@ -31,6 +31,28 @@ def update_visit_count():
     return count
 
 visit_count = update_visit_count()
+def update_download_count():
+    count_file = "downloads.txt"
+    if not os.path.exists(count_file):
+        with open(count_file, "w") as f:
+            f.write("0")
+
+    with open(count_file, "r") as f:
+        count = int(f.read())
+
+    count += 1
+
+    with open(count_file, "w") as f:
+        f.write(str(count))
+
+    return count
+
+def get_download_count():
+    count_file = "downloads.txt"
+    if not os.path.exists(count_file):
+        return 0
+    with open(count_file, "r") as f:
+        return int(f.read())
 
 # ====================== LOGO (Top-Right Floating) ======================
 st.markdown(
@@ -65,6 +87,10 @@ st.title("SVCE FDP Certificate Generator")
 
 # Visit Counter Display
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
+# download Counter Display
+download_total = get_download_count()
+...
+📥 <b>Total Certificates Downloaded:</b> {download_total}<br>
 
 # ====================== CERTIFICATE VALIDATION ======================
 # Parameters
@@ -142,7 +168,7 @@ if st.button("Generate Certificate"):
                 with open(cert_filename, "rb") as f:
                     st.success("✅ Certificate generated successfully!")
                     st.download_button("📥 Download Certificate", f, file_name=cert_filename, mime="application/pdf")
-
+                    download_count = update_download_count()
                 os.remove(cert_filename)
             else:
                 st.warning("⚠️ You must have attended at least 3 sessions and submitted feedback to receive a certificate.")
