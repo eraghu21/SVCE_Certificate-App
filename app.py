@@ -37,7 +37,7 @@ def set_background(image_path, width='80%', height='80%'):
 set_background("brochure.png", width='700px', height='700px')  # You can adjust the size
 
 
-st.title("🎓 SVCE FDP Certificate Generator")
+#st.title("🎓 SVCE FDP Certificate Generator")
 
 # Parameters
 buffer_size = 64 * 1024
