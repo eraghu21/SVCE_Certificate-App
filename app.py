@@ -80,7 +80,7 @@ st.markdown(
 )
 
 # ====================== HEADER ======================
-st.title("SVCE FDP Certificate Generator")
+st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certificate Generator")
 
 # FDP Banner Image (resized)
 # banner = Image.open("brochure.png")
@@ -174,7 +174,7 @@ if st.button("Generate Certificate"):
             st.error("❌ Email not found in the Registration records.")
 
 # ====================== FOOTER ======================
-st.markdown("""---""")
+"""st.markdown("""---""")
 st.markdown(
     f"""
     <div style='text-align: center; font-size: 14px; color: gray;'>
@@ -185,4 +185,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-)
+)"""
