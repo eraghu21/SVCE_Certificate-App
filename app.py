@@ -65,15 +65,15 @@ if st.button("Generate Certificate"):
                 pdf.ln(62)
 
                # Name + Designation (uppercase)
+               # Name + Designation (uppercase + centered)
                 pdf.set_font("Arial", 'B', 20)
-                #pdf.set_x(100)
-                pdf.cell(95, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
+                pdf.cell(0, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
 
-                # College (uppercase)
+                # College (uppercase + centered)
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
-                pdf.set_x(40)
                 pdf.cell(0, 10, txt=college.strip().upper(), ln=True, align='C')
+
 
                 # Save PDF
                 cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
