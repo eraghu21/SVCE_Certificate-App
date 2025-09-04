@@ -8,25 +8,28 @@ import os
 import base64
 
 def set_background(image_path):
-    with open(image_path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
+    """
+    Inject CSS to set a full-page background using a local image.
+    """
+    with open(image_path, "rb") as img_file:
+        img_base64 = base64.b64encode(img_file.read()).decode()
 
     st.markdown(
         f"""
         <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{encoded_string}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }}
+            .stApp {{
+                background: url("data:image/png;base64,{img_base64}");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Call the function at the top of your app
-set_background("brochure.png")  # Replace with your image path
+# Apply the background at the very start of your app
+set_background("your_bg_image.png")  # Adjust the file path if needed
 
 st.title("🎓 SVCE FDP Certificate Generator")
 
