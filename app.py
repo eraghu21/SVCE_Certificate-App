@@ -11,7 +11,7 @@ from PIL import Image
 st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered")
 
 banner = Image.open("brochure.png")  # Replace with your banner image
-st.image(banner, use_container_width=True)
+#st.image(banner, use_container_width=True)
 banner = banner.resize((900, 250))  # Resize to your preferred size
 st.image(banner)
 # ====================== STYLE ======================
