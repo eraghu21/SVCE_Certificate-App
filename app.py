@@ -29,7 +29,7 @@ def set_background(image_path):
     )
 
 # Apply the background at the very start of your app
-set_background("your_bg_image.png")  # Adjust the file path if needed
+set_background("brochure.png")  # Adjust the file path if needed
 
 st.title("🎓 SVCE FDP Certificate Generator")
 
