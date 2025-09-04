@@ -73,7 +73,7 @@ st.markdown(
         }
     </style>
     <div class="logo-container">
-        <img src="data:image/png;base64,%s" width="50">
+        <img src="data:image/png;base64,%s" width="100">
     </div>
     """ % base64.b64encode(open("svce_logo.png", "rb").read()).decode(),
     unsafe_allow_html=True
