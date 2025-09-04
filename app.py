@@ -153,4 +153,12 @@ st.markdown("""---""")
 st.markdown(
     f"""
     <div style='text-align: center; font-size: 14px; color: gray;'>
-        D
+        Developed with ❤️ by <b>Raghuvaran E</b><br>
+        Sri Venkateswara College of Engineering - Dept. of CSE<br>
+        <i>Quantum AI FDP 2025</i><br>
+        📧 <a href="mailto:eraghu21@gmail.com">eraghu21@gmail.com</a><br>
+        👁️ <b>Total Visits:</b> {visit_count}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
