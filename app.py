@@ -59,9 +59,6 @@ download_total = get_download_count()
 # ====================== LOGO (Top-Right Floating) ======================
 
 
-logo = Image.open("svce_logo.png")
-logo = logo.resize((500, 100))  # (width, height)
-logo.save("svce_logo_resized.png")
 # ====================== HEADER ======================
 st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certificate Generator")
 
