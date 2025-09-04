@@ -25,7 +25,7 @@ def set_background(image_path, width='80%', height='50%'):
         .stApp {{
             background-image: url("data:image/png;base64,{img_base64}");
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: Top;
             background-size: {width} {height};
         }}
         </style>
@@ -37,7 +37,7 @@ def set_background(image_path, width='80%', height='50%'):
 set_background("brochure.png", width='500px', height='300px')  # You can adjust the size
 
 
-#st.title("🎓 SVCE FDP Certificate Generator")
+st.title("🎓 SVCE FDP Certificate Generator")
 
 # Parameters
 buffer_size = 64 * 1024
