@@ -7,16 +7,8 @@ import requests
 import os
 import base64
 
-def set_background(image_path, width='80%', height='50%'):
-    """
-    Set a local background image with explicit width and height.
-    
-    Parameters:
-    - image_path: Local image file path
-    - width: e.g., '100%', '1920px'
-    - height: e.g., '100%', '1080px'
-    """
-    with open(image_path, "rb") as img_file:
+def set_background(image_path, width='100%', height='100%'):
+     with open(image_path, "rb") as img_file:
         img_base64 = base64.b64encode(img_file.read()).decode()
 
     st.markdown(
@@ -34,7 +26,7 @@ def set_background(image_path, width='80%', height='50%'):
     )
 
 # Example usage
-set_background("brochure.png", width='500px', height='300px')  # You can adjust the size
+set_background("brochure.png", width='500px', height='500px')  # You can adjust the size
 
 
 st.title("🎓 SVCE FDP Certificate Generator")
