@@ -57,29 +57,11 @@ def get_download_count():
         return int(f.read())
 download_total = get_download_count()
 # ====================== LOGO (Top-Right Floating) ======================
-st.markdown(
-    """
-    <style>
-        .logo-container {
-            position: fixed;
-            top: 100px;
-            left:100px
-            right: 100px;
-            width: 500px;
-            z-index: 100;
-        }
-        logo.resize((500, 300))
-        .stApp {
-            background-color: #f9f9f9;
-        }
-    </style>
-    <div class="logo-container">
-        <img src="data:image/png;base64,%s" width="100">
-    </div>
-    """ % base64.b64encode(open("svce_logo.png", "rb").read()).decode(),
-    unsafe_allow_html=True
-)
 
+
+logo = Image.open("svce_logo.png")
+logo = logo.resize((500, 100))  # (width, height)
+logo.save("svce_logo_resized.png")
 # ====================== HEADER ======================
 st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certificate Generator")
 
