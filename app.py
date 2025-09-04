@@ -88,8 +88,6 @@ st.title("SVCE FDP Certificate Generator")
 # Visit Counter Display
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
 # download Counter Display
-download_total = get_download_count()
-...
 📥 <b>Total Certificates Downloaded:</b> {download_total}<br>
 
 # ====================== CERTIFICATE VALIDATION ======================
