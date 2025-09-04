@@ -7,23 +7,39 @@ import requests
 import os
 import base64
 from PIL import Image
-# ====================== CONFIG ======================
+
+# ====================== PAGE CONFIG ======================
 st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered")
 
-banner = Image.open("brochure.png")  # Replace with your banner image
-#st.image(banner, use_container_width=True)
-banner = banner.resize((500, 250))  # Resize to your preferred size
-st.image(banner)
-# ====================== STYLE ======================
-# Logo in top-center
+# ====================== VISIT COUNTER ======================
+def update_visit_count():
+    count_file = "counter.txt"
+    if not os.path.exists(count_file):
+        with open(count_file, "w") as f:
+            f.write("0")
+
+    with open(count_file, "r") as f:
+        count = int(f.read())
+
+    # Count only new session
+    if "counted" not in st.session_state:
+        count += 1
+        with open(count_file, "w") as f:
+            f.write(str(count))
+        st.session_state.counted = True
+
+    return count
+
+visit_count = update_visit_count()
+
+# ====================== LOGO (Top-Right Floating) ======================
 st.markdown(
     """
     <style>
         .logo-container {
             position: fixed;
             top: 20px;
-            left: 50px
-            right: 50px;
+            right: 20px;
             width: 100px;
             z-index: 100;
         }
@@ -34,20 +50,32 @@ st.markdown(
     <div class="logo-container">
         <img src="data:image/png;base64,%s" width="100">
     </div>
-    """ % base64.b64encode(open("svce_logo.jpg", "rb").read()).decode(),
+    """ % base64.b64encode(open("logo.png", "rb").read()).decode(),
     unsafe_allow_html=True
 )
 
-# ====================== PARAMETERS ======================
+# ====================== HEADER ======================
+st.title("🎓 SVCE FDP Certificate Generator")
+
+# FDP Banner Image (resized)
+banner = Image.open("brochure.png")
+banner = banner.resize((900, 300))
+st.image(banner)
+
+# Visit Counter Display
+st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
+
+# ====================== CERTIFICATE VALIDATION ======================
+# Parameters
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
 encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
 
-# Temp filenames
+# Temp files
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
 
-# ====================== DATA LOAD ======================
+# Load & decrypt
 try:
     with open(enc_file, "wb") as f:
         f.write(requests.get(encrypted_url).content)
@@ -64,12 +92,10 @@ except Exception as e:
 # ====================== EMAIL INPUT ======================
 email_input = st.text_input("📧 Enter your registered Email")
 
-# Email validation
 def is_valid_email(email):
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(pattern, email)
 
-# ====================== GENERATE CERTIFICATE ======================
 if st.button("Generate Certificate"):
     if not is_valid_email(email_input):
         st.warning("⚠️ Please enter a valid email address.")
@@ -98,7 +124,7 @@ if st.button("Generate Certificate"):
                 # Generate certificate
                 pdf = FPDF(orientation='L', unit='mm', format='A4')
                 pdf.add_page()
-                pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)  # Full background
+                pdf.image("certificate_bg.png", x=0, y=0, w=297, h=210)
 
                 pdf.ln(62)
                 pdf.set_font("Arial", 'B', 20)
@@ -117,24 +143,14 @@ if st.button("Generate Certificate"):
                     st.download_button("📥 Download Certificate", f, file_name=cert_filename, mime="application/pdf")
 
                 os.remove(cert_filename)
-
             else:
                 st.warning("⚠️ You must have attended at least 3 sessions and submitted feedback to receive a certificate.")
         else:
             st.error("❌ Email not found in the Registration records.")
 
-
 # ====================== FOOTER ======================
 st.markdown("""---""")
 st.markdown(
-    """
+    f"""
     <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed by <b>Raghuvaran E / Assistant Professor</b><br>
-         Department Of CSE<br>
-        Sri Venkateswara College of Engineering - Dept. of CSE<br>
-        <i>Quantum AI FDP 2025</i><br>
-        📧 <a href="mailto:raghuvarane@svce.ac.in">raghuvarane@svce.ac.in</a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+        D
