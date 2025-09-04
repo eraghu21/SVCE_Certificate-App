@@ -34,7 +34,7 @@ def set_background(image_path, width='80%', height='50%'):
     )
 
 # Example usage
-set_background("brochure.png", width='700px', height='400px')  # You can adjust the size
+set_background("brochure.png", width='500px', height='300px')  # You can adjust the size
 
 
 #st.title("🎓 SVCE FDP Certificate Generator")
