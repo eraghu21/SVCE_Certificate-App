@@ -6,13 +6,15 @@ import pyAesCrypt
 import requests
 import os
 import base64
-
+from PIL import Image
 # ====================== CONFIG ======================
 st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered")
-st.title("🎓 SVCE FDP Certificate Generator")
+
+banner = Image.open("brochure.png")  # Replace with your banner image
+st.image(banner, use_column_width=True)
 
 # ====================== STYLE ======================
-# Logo in top-right
+# Logo in top-center
 st.markdown(
     """
     <style>
@@ -120,14 +122,6 @@ if st.button("Generate Certificate"):
             st.error("❌ Email not found in the Registration records.")
 
 # ====================== FDP BROCHURE ======================
-with st.expander("📄 View FDP Brochure"):
-    with open("FDP-Quantum.pdf", "rb") as brochure:
-        st.download_button(
-            label="📥 Download FDP Brochure",
-            data=brochure,
-            file_name="FDP-Quantum.pdf",
-            mime="application/pdf"
-        )
     st.markdown("""
     **Quantum AI: Educating the Next Generation of Professionals**  
     📅 08–12 September 2025  
