@@ -55,7 +55,7 @@ def get_download_count():
         return 0
     with open(count_file, "r") as f:
         return int(f.read())
-
+download_total = get_download_count()
 # ====================== LOGO (Top-Right Floating) ======================
 st.markdown(
     """
@@ -87,7 +87,7 @@ st.title("SVCE FDP Certificate Generator")
 # banner = banner.resize((500, 300))
 # st.image(banner)
 
-# Visit Counter Display
+# Visit & Download Counter Display
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Downloads: {download_total}</div>", unsafe_allow_html=True)
 # ====================== CERTIFICATE VALIDATION ======================
