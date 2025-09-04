@@ -21,7 +21,8 @@ st.markdown(
         .logo-container {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 50px
+            right: 50px;
             width: 100px;
             z-index: 100;
         }
