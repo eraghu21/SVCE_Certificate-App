@@ -62,10 +62,10 @@ st.markdown(
     <style>
         .logo-container {
             position: fixed;
-            top: 60px;
+            top: 100px;
             left:100px
             right: 100px;
-            width: 100px;
+            width: 500px;
             z-index: 100;
         }
         logo.resize((500, 300))
