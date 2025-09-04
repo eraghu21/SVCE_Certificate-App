@@ -173,16 +173,4 @@ if st.button("Generate Certificate"):
         else:
             st.error("❌ Email not found in the Registration records.")
 
-# ====================== FOOTER ======================
-"""st.markdown("""---""")
-st.markdown(
-    f"""
-    <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed by <b>Mr.Raghuvaran E/Assistant Professor</b><br>
-        Department of Computer Science and Engineering<br>
-        Sri Venkateswara College of Engineering<br>
-        📧 <a href="mailto:raghuvarane@svce.ac.in">raghuvarane@svce.ac.in</a><br>
-    </div>
-    """,
-    unsafe_allow_html=True
-)"""
+
