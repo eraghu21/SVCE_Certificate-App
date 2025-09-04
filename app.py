@@ -66,7 +66,7 @@ if st.button("Generate Certificate"):
 
                 # Name + Designation
                 pdf.set_font("Arial", 'B', 20)
-                pdf.set_x(40)
+                pdf.set_x(60)
                 pdf.cell(0, 12, txt=f"{name.strip()} - {designation.strip()}", ln=True, align='C')
 
                 # College
