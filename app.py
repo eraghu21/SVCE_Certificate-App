@@ -38,7 +38,7 @@ st.markdown(
     <style>
         .logo-container {
             position: fixed;
-            top: 20px;
+            top: 40px;
             left:50px
             right: 50px;
             width: 100px;
@@ -56,11 +56,11 @@ st.markdown(
 )
 
 # ====================== HEADER ======================
-st.title("🎓 SVCE FDP Certificate Generator")
+st.title("SVCE FDP Certificate Generator")
 
 # FDP Banner Image (resized)
 banner = Image.open("brochure.png")
-banner = banner.resize((250, 250))
+banner = banner.resize((500, 300))
 st.image(banner)
 
 # Visit Counter Display
@@ -158,7 +158,6 @@ st.markdown(
         Department of Computer Science and Engineering<br>
         Sri Venkateswara College of Engineering<br>
         📧 <a href="mailto:raghuvarane@svce.ac.in">raghuvarane@svce.ac.in</a><br>
-       # 👁️ <b>Total Visits:</b> {visit_count}
     </div>
     """,
     unsafe_allow_html=True
