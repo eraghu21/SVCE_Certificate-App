@@ -68,6 +68,7 @@ st.markdown(
             width: 100px;
             z-index: 100;
         }
+        logo.resize((500, 300))
         .stApp {
             background-color: #f9f9f9;
         }
