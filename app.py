@@ -5,6 +5,28 @@ import re
 import pyAesCrypt
 import requests
 import os
+import base64
+
+def set_background(image_path):
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded_string}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Call the function at the top of your app
+set_background("brochure.png")  # Replace with your image path
 
 st.title("🎓 SVCE FDP Certificate Generator")
 
