@@ -38,7 +38,7 @@ st.markdown(
     <style>
         .logo-container {
             position: fixed;
-            top: 40px;
+            top: 60px;
             left:50px
             right: 50px;
             width: 100px;
@@ -59,9 +59,9 @@ st.markdown(
 st.title("SVCE FDP Certificate Generator")
 
 # FDP Banner Image (resized)
-banner = Image.open("brochure.png")
-banner = banner.resize((500, 300))
-st.image(banner)
+# banner = Image.open("brochure.png")
+# banner = banner.resize((500, 300))
+# st.image(banner)
 
 # Visit Counter Display
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
