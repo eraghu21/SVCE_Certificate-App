@@ -63,8 +63,8 @@ st.markdown(
         .logo-container {
             position: fixed;
             top: 60px;
-            left:50px
-            right: 50px;
+            left:10px
+            right: 10px;
             width: 100px;
             z-index: 100;
         }
