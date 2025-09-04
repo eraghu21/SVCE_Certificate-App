@@ -39,7 +39,8 @@ st.markdown(
         .logo-container {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left:50px
+            right: 50px;
             width: 100px;
             z-index: 100;
         }
@@ -59,7 +60,7 @@ st.title("🎓 SVCE FDP Certificate Generator")
 
 # FDP Banner Image (resized)
 banner = Image.open("brochure.png")
-banner = banner.resize((900, 300))
+banner = banner.resize((250, 250))
 st.image(banner)
 
 # Visit Counter Display
@@ -129,7 +130,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(62)
                 pdf.set_font("Arial", 'B', 20)
                 pdf.set_x(95)
-                pdf.cell(240, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
+                pdf.cell(240, 12, txt=f"{name.strip().upper()} - {designation.strip().title()}", ln=True, align='C')
 
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
@@ -153,11 +154,11 @@ st.markdown("""---""")
 st.markdown(
     f"""
     <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed with ❤️ by <b>Raghuvaran E</b><br>
-        Sri Venkateswara College of Engineering - Dept. of CSE<br>
-        <i>Quantum AI FDP 2025</i><br>
-        📧 <a href="mailto:eraghu21@gmail.com">eraghu21@gmail.com</a><br>
-        👁️ <b>Total Visits:</b> {visit_count}
+        Developed by <b>Mr.Raghuvaran E/Assistant Professor</b><br>
+        Department of Computer Science and Engineering<br>
+        Sri Venkateswara College of Engineering<br>
+        📧 <a href="mailto:raghuvarane@svce.ac.in">raghuvarane@svce.ac.in</a><br>
+       # 👁️ <b>Total Visits:</b> {visit_count}
     </div>
     """,
     unsafe_allow_html=True
