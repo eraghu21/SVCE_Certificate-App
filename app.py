@@ -7,7 +7,7 @@ import requests
 import os
 import base64
 
-def set_background(image_path, width='80%', height='80%'):
+def set_background(image_path, width='80%', height='50%'):
     """
     Set a local background image with explicit width and height.
     
