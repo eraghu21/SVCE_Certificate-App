@@ -64,10 +64,11 @@ if st.button("Generate Certificate"):
                 # Move to Y position
                 pdf.ln(62)
 
-               # Name + Designation (uppercase)
+              
                # Name + Designation (uppercase + centered)
                 pdf.set_font("Arial", 'B', 20)
-                pdf.cell(0, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
+                pdf.set_x(95)
+                pdf.cell(100, 12, txt=f"{name.strip().upper()} - {designation.strip().upper()}", ln=True, align='C')
 
                 # College (uppercase + centered)
                 pdf.ln(2)
