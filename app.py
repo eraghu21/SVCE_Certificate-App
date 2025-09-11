@@ -68,8 +68,8 @@ st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certi
 # st.image(banner)
 
 # Visit & Download Counter Display
-st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Visits: {visit_count}</div>", unsafe_allow_html=True)
-st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Total Downloads: {download_total}</div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Day Visits: {visit_count}</div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {download_total}</div>", unsafe_allow_html=True)
 # ====================== CERTIFICATE VALIDATION ======================
 # Parameters
 buffer_size = 64 * 1024
