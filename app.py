@@ -71,7 +71,7 @@ try:
     os.remove(enc_file)
     os.remove(dec_file)
 except Exception as e:
-    st.exception(e)  # Will show full error details
+    st.error(f"❌ Error loading participant data: {e}")
     st.stop()
 
 # Normalize column names
