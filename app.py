@@ -62,39 +62,6 @@ encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main
 
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
-
-try:
-    # Download
-    resp = requests.get(encrypted_url)
-    if resp.status_code != 200:
-        st.error(f"❌ Error: Unable to download encrypted file. Status code: {resp.status_code}")
-        st.stop()
-
-    content = resp.content
-    st.write("📦 Encrypted file size from GitHub:", len(content), "bytes")
-
-    with open(enc_file, "wb") as f:
-        f.write(content)
-
-    if os.path.getsize(enc_file) == 0:
-        st.error("❌ Error: Downloaded encrypted file is empty.")
-        st.stop()
-
-    # Decrypt
-    try:
-        pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
-    except Exception as e:
-        st.error(f"❌ Decryption failed: {e}")
-        st.stop()
-
-    # Read Excel
-    df = pd.read_excel(dec_file)
-    st.write("✅ Excel loaded. Columns are:", df.columns.tolist())
-
-    # Clean up
-    os.remove(enc_file)
-    os.remove(dec_file)
-
 except Exception as e:
     st.error(f"Unexpected error loading participant data: {e}")
     st.stop()
@@ -165,17 +132,4 @@ if st.button("Generate Certificate"):
         else:
             st.error("❌ Email not found in the registration records.")
 
-# ====================== FOOTER ======================
-st.markdown("""---""")
-st.markdown(
-    f"""
-    <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed with ❤️ by <b>Raghuvaran E</b><br>
-        Sri Venkateswara College of Engineering - Dept. of CSE<br>
-        <i>Quantum AI FDP 2025</i><br>
-        📧 <a href="mailto:eraghu21@gmail.com">eraghu21@gmail.com</a><br>
-        👁️ Visits: {visit_count} | 📥 Downloads: {get_download_count()}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
