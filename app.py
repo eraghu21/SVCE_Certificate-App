@@ -144,17 +144,3 @@ if st.button("Generate Certificate"):
         else:
             st.error("❌ Email not found in the registration records.")
 
-# ====================== FOOTER ======================
-st.markdown("""---""")
-st.markdown(
-    f"""
-    <div style='text-align: center; font-size: 14px; color: gray;'>
-        Developed with ❤️ by <b>Raghuvaran E</b><br>
-        Sri Venkateswara College of Engineering - Dept. of CSE<br>
-        <i>Quantum AI FDP 2025</i><br>
-        📧 <a href="mailto:eraghu21@gmail.com">eraghu21@gmail.com</a><br>
-        👁️ Visits: {visit_count} | 📥 Downloads: {get_download_count()}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
