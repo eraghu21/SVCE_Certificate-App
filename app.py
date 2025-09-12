@@ -129,7 +129,7 @@ if st.button("Generate Certificate"):
                 # Generate certificate
                 pdf = FPDF(orientation='L', unit='mm', format='A4')
                 pdf.add_page()
-                pdf.image("Quantum AI FDP Certificate.jpeg", x=0, y=0, w=297, h=210)
+                pdf.image("QuantumAIFDPCertificat.jpeg", x=0, y=0, w=297, h=210)
 
                 pdf.ln(62)
                 pdf.set_font("Arial", 'B', 20)
