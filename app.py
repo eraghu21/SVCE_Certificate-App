@@ -17,13 +17,16 @@ def update_visit_count():
     if not os.path.exists(count_file):
         with open(count_file, "w") as f:
             f.write("0")
+
     with open(count_file, "r") as f:
         count = int(f.read())
+
     if "counted" not in st.session_state:
         count += 1
         with open(count_file, "w") as f:
             f.write(str(count))
         st.session_state.counted = True
+
     return count
 
 def update_download_count():
@@ -31,11 +34,15 @@ def update_download_count():
     if not os.path.exists(count_file):
         with open(count_file, "w") as f:
             f.write("0")
+
     with open(count_file, "r") as f:
         count = int(f.read())
+
     count += 1
+
     with open(count_file, "w") as f:
         f.write(str(count))
+
     return count
 
 def get_download_count():
@@ -51,11 +58,11 @@ download_total = get_download_count()
 # ====================== HEADER ======================
 st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certificate Generator")
 
-# Visit & Download Counter Display
+# Visit & Download Counters
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Day Visits: {visit_count}</div>", unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {download_total}</div>", unsafe_allow_html=True)
 
-# ====================== CERTIFICATE VALIDATION ======================
+# ====================== EXCEL DECRYPTION ======================
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
 encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
@@ -66,6 +73,7 @@ dec_file = "registrations.xlsx"
 try:
     with open(enc_file, "wb") as f:
         f.write(requests.get(encrypted_url).content)
+
     pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
     df = pd.read_excel(dec_file)
     os.remove(enc_file)
@@ -74,8 +82,8 @@ except Exception as e:
     st.error(f"❌ Error loading participant data: {e}")
     st.stop()
 
-# ✅ Normalize column names to lowercase
-df.columns = df.columns.str.strip().str.lower()
+# Clean column names
+df.columns = df.columns.str.strip().str.lower()  # e.g. 'email', 'name', ...
 
 # ====================== EMAIL INPUT ======================
 email_input = st.text_input("📧 Enter your registered Email")
@@ -84,10 +92,12 @@ def is_valid_email(email):
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(pattern, email)
 
+# ====================== CERTIFICATE GENERATION ======================
 if st.button("Generate Certificate"):
     if not is_valid_email(email_input):
         st.warning("⚠️ Please enter a valid email address.")
     else:
+        # Match user by email
         match = df[df['email'].str.strip().str.lower() == email_input.strip().lower()]
 
         if not match.empty:
@@ -99,7 +109,7 @@ if st.button("Generate Certificate"):
                 designation_raw = row['designation'].strip().lower()
                 college = row['college name']
 
-                # Shorten designation
+                # Shorten and capitalize designation
                 if "assistant" in designation_raw:
                     designation = "Assistant Professor"
                 elif "associate" in designation_raw:
@@ -107,9 +117,9 @@ if st.button("Generate Certificate"):
                 elif "professor" in designation_raw:
                     designation = "Professor"
                 else:
-                    designation = row['designation'].strip()
+                    designation = row['designation'].strip().title()
 
-                # Generate certificate
+                # === Generate Certificate ===
                 pdf = FPDF(orientation='L', unit='mm', format='A4')
                 pdf.add_page()
                 pdf.image("QuantumAIFDPCertificat.jpeg", x=0, y=0, w=297, h=210)
@@ -122,7 +132,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(1)
                 pdf.set_font("Arial", size=16)
                 pdf.set_x(15)
-                pdf.cell(0, 10, txt=designation.strip().title(), ln=True, align='C')
+                pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(1)
                 pdf.set_font("Arial", size=16)
@@ -141,4 +151,19 @@ if st.button("Generate Certificate"):
             else:
                 st.warning("⚠️ You must have attended at least 3 sessions and submitted feedback to receive a certificate.")
         else:
-            st.error("❌ Email not found in the Registration records.")
+            st.error("❌ Email not found in the registration records.")
+
+# ====================== FOOTER ======================
+st.markdown("""---""")
+st.markdown(
+    f"""
+    <div style='text-align: center; font-size: 14px; color: gray;'>
+        Developed with ❤️ by <b>Raghuvaran E</b><br>
+        Sri Venkateswara College of Engineering - Dept. of CSE<br>
+        <i>Quantum AI FDP 2025</i><br>
+        📧 <a href="mailto:eraghu21@gmail.com">eraghu21@gmail.com</a><br>
+        👁️ Visits: {visit_count} | 📥 Downloads: {get_download_count()}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
