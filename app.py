@@ -5,8 +5,6 @@ import re
 import pyAesCrypt
 import requests
 import os
-import base64
-from PIL import Image
 
 # ====================== CONFIG ======================
 st.set_page_config(page_title="SVCE FDP Certificate Generator", layout="centered")
@@ -45,7 +43,6 @@ def get_download_count():
     with open(count_file, "r") as f:
         return int(f.read())
 
-
 visit_count = update_visit_count()
 download_total = get_download_count()
 
@@ -57,18 +54,33 @@ st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {do
 
 # ====================== LOAD & DECRYPT EXCEL ======================
 buffer_size = 64 * 1024
-password = st.secrets["excel_password"] 
+password = st.secrets["excel_password"]
 encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
 
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
+
+try:
+    resp = requests.get(encrypted_url)
+    if resp.status_code != 200 or len(resp.content) == 0:
+        st.error("❌ Failed to download encrypted Excel file from GitHub.")
+        st.stop()
+
+    with open(enc_file, "wb") as f:
+        f.write(resp.content)
+
+    pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
+    df = pd.read_excel(dec_file)
+
+    os.remove(enc_file)
+    os.remove(dec_file)
+
 except Exception as e:
-    st.error(f"Unexpected error loading participant data: {e}")
+    st.error("❌ Error loading participant data. Please try again later.")
     st.stop()
 
 # ====================== CLEAN COLUMN NAMES ======================
 df.columns = df.columns.str.strip().str.lower()
-# (the replace is just to reassure you have correct names; might not be necessary)
 
 # ====================== EMAIL INPUT ======================
 email_input = st.text_input("📧 Enter your registered Email")
@@ -77,6 +89,7 @@ def is_valid_email(email):
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(pattern, email)
 
+# ====================== GENERATE CERTIFICATE ======================
 if st.button("Generate Certificate"):
     if not is_valid_email(email_input):
         st.warning("⚠️ Please enter a valid email address.")
@@ -130,6 +143,4 @@ if st.button("Generate Certificate"):
             else:
                 st.warning("⚠️ Your attendance is less than required.")
         else:
-            st.error("❌ Email not found in the registration records.")
-
-
+            st.erro
