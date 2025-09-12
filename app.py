@@ -139,7 +139,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
                 pdf.set_x(65)
-                pdf.cell(0, 10, designation.strip().title()}", ln=True, align='C')
+                pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
