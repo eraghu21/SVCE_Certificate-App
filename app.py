@@ -100,7 +100,7 @@ except Exception as e:
     st.stop()
 
 # ====================== CLEAN COLUMN NAMES ======================
-df.columns = df.columns.str.strip().str.lower().replace({'college_name':'college_name', 'designation':'designation','name':'name','email':'email','attendance':'attendance'})  
+df.columns = df.columns.str.strip().str.lower()({'college_name':'college_name', 'designation':'designation','name':'name','email':'email','attendance':'attendance'})  
 # (the replace is just to reassure you have correct names; might not be necessary)
 
 # ====================== EMAIL INPUT ======================
