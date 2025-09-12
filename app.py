@@ -131,14 +131,14 @@ if st.button("Generate Certificate"):
                 pdf.add_page()
                 pdf.image("QuantumAIFDPCertificat.jpeg", x=0, y=0, w=297, h=210)
 
-                pdf.ln(62)
+                pdf.ln(72)
                 pdf.set_font("Arial", 'B', 20)
-                pdf.set_x(65)
+                pdf.set_x(45)
                 pdf.cell(0, 12, txt=name.strip().upper(), ln=True, align='C')
                  
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
-                pdf.set_x(65)
+                pdf.set_x(55)
                 pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(2)
