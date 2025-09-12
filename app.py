@@ -131,19 +131,19 @@ if st.button("Generate Certificate"):
                 pdf.add_page()
                 pdf.image("QuantumAIFDPCertificat.jpeg", x=0, y=0, w=297, h=210)
 
-                pdf.ln(72)
+                pdf.ln(67)
                 pdf.set_font("Arial", 'B', 20)
-                pdf.set_x(45)
-                pdf.cell(0, 12, txt=name.strip().upper(), ln=True, align='C')
+                pdf.set_x(30)
+                pdf.cell(10, 12, txt=name.strip().upper(), ln=True, align='C')
                  
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
-                pdf.set_x(55)
-                pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
+                pdf.set_x(45)
+                pdf.cell(10, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(2)
                 pdf.set_font("Arial", size=16)
-                pdf.cell(0, 10, txt=college.strip().upper(), ln=True, align='C')
+                pdf.cell(10, 10, txt=college.strip().upper(), ln=True, align='C')
 
                 cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
                 pdf.output(cert_filename)
