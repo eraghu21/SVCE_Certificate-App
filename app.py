@@ -105,7 +105,7 @@ if st.button("Generate Certificate"):
     if not is_valid_email(email_input):
         st.warning("⚠️ Please enter a valid email address.")
     else:
-       match = df[df['mail id'].str.strip().str.lower() == email_input.strip().lower()]
+    match = df[df['mail id'].str.strip().str.lower() == email_input.strip().lower()]
 
         if not match.empty:
             row = match.iloc[0]
