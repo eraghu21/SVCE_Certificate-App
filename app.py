@@ -143,4 +143,4 @@ if st.button("Generate Certificate"):
             else:
                 st.warning("⚠️ Your attendance is less than required.")
         else:
-            st.erro
+            st.error("❌ Email not found in the registration records.")
