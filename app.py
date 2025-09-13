@@ -121,7 +121,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(65)
                 pdf.set_font("AlexBrush", '', 54)
                 pdf.set_x(10)
-                pdf.cell(0, 12, txt=name.strip().upper(), ln=True, align='C')
+                pdf.cell(0, 12, txt=name.strip().title(), ln=True, align='C')
 
                 pdf.ln(1)
                 pdf.set_font("AlexBrush", size=22)
@@ -130,7 +130,7 @@ if st.button("Generate Certificate"):
 
                 pdf.ln(1)
                 pdf.set_font("AlexBrush", size=22)
-                pdf.cell(0, 10, txt=college.strip().upper(), ln=True, align='C')
+                pdf.cell(0, 10, txt=college.strip().title(), ln=True, align='C')
 
                 cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
                 pdf.output(cert_filename)
