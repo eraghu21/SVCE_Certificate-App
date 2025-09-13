@@ -123,7 +123,7 @@ if st.button("Generate Certificate"):
                 pdf.set_x(10)
                 pdf.cell(0, 12, txt=name.strip().title(), ln=True, align='C')
 
-                pdf.ln(1)
+                pdf.ln(2)
                 pdf.set_font("AlexBrush", size=22)
                 pdf.set_x(15)
                 pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
