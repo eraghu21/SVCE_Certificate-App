@@ -127,6 +127,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(2)
                 pdf.set_font("AlexBrush", size=22)
                 pdf.set_x(15)
+                pdf.set_text_color(0, 0, 0) 
                 pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(1)
