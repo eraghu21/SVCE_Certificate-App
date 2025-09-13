@@ -121,6 +121,7 @@ if st.button("Generate Certificate"):
                 pdf.ln(65)
                 pdf.set_font("AlexBrush", '', 54)
                 pdf.set_x(10)
+                pdf.set_text_color(212, 175, 55)  # RGB for metallic gold-like color
                 pdf.cell(0, 12, txt=name.strip().title(), ln=True, align='C')
 
                 pdf.ln(2)
