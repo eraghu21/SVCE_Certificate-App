@@ -116,19 +116,20 @@ if st.button("Generate Certificate"):
                 pdf = FPDF(orientation='L', unit='mm', format='A4')
                 pdf.add_page()
                 pdf.image("QuantumAIFDPCertificat.jpeg", x=0, y=0, w=297, h=210)
+                pdf.add_font("AlexBrush", "", "AlexBrush-Regular.ttf", uni=True)
 
                 pdf.ln(65)
-                pdf.set_font("alex brush", 'B', 54)
+                pdf.set_font("AlexBrush", 'B', 54)
                 pdf.set_x(10)
                 pdf.cell(0, 12, txt=name.strip().upper(), ln=True, align='C')
 
                 pdf.ln(1)
-                pdf.set_font("alex brush", size=22)
+                pdf.set_font("AlexBrush", size=22)
                 pdf.set_x(15)
                 pdf.cell(0, 10, designation.strip().title(), ln=True, align='C')
 
                 pdf.ln(1)
-                pdf.set_font("alex brush", size=22)
+                pdf.set_font("AlexBrush", size=22)
                 pdf.cell(0, 10, txt=college.strip().upper(), ln=True, align='C')
 
                 cert_filename = f"certificate_{name.strip().replace(' ', '_')}.pdf"
