@@ -90,12 +90,12 @@ try:
     except Exception as e:
         st.error(f"❌ pd.read_excel failed: {e}")
         st.stop()
-
+st.write("DEBUG PASSWORD:", password)
     st.write("✅ Columns in decrypted Excel:", df.columns.tolist())
     # Clean up
     os.remove(enc_file)
     os.remove(dec_file)
-st.write("DEBUG PASSWORD:", password)
+
 except Exception as e:
     st.error(f"❌ Unexpected error: {e}")
     st.stop()
