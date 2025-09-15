@@ -55,7 +55,7 @@ st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {do
 # ====================== LOAD & DECRYPT EXCEL ======================
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
-encrypted_url = "https://raw.githubusercontent.com/eraghu21/certificate-app/main/registrations.xlsx.aes"
+encrypted_url = "https://raw.githubusercontent.com/eraghu21/SVCE_Certificate-App/main/registrations.xlsx.aes"
 
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
