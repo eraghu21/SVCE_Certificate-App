@@ -82,6 +82,14 @@ except Exception as e:
 # ====================== CLEAN COLUMN NAMES ======================
 df.columns = df.columns.str.strip().str.lower()
 st.write("Columns found in Excel:", df.columns.tolist())
+
+expected_cols = ['email', 'name', 'designation', 'college_name', 'attendance']
+actual_cols = [col.strip().lower() for col in df.columns]
+missing = [col for col in expected_cols if col not in actual_cols]
+
+if missing:
+    st.error(f"❌ Missing required columns: {', '.join(missing)}")
+    st.stop()
 if 'email' not in df.columns:
     st.error("❌ 'email' column not found in the registration file.")
     st.stop()
