@@ -95,7 +95,7 @@ try:
     # Clean up
     os.remove(enc_file)
     os.remove(dec_file)
-
+st.write("DEBUG PASSWORD:", password)
 except Exception as e:
     st.error(f"❌ Unexpected error: {e}")
     st.stop()
