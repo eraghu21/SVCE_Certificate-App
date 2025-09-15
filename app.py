@@ -62,21 +62,42 @@ dec_file = "registrations.xlsx"
 
 try:
     resp = requests.get(encrypted_url)
-    if resp.status_code != 200 or len(resp.content) == 0:
-        st.error("❌ Failed to download encrypted Excel file from GitHub.")
+    if resp.status_code != 200:
+        st.error(f"❌ HTTP status {resp.status_code} when downloading encrypted file.")
+        st.stop()
+    if len(resp.content) == 0:
+        st.error("❌ Downloaded encrypted file is empty.")
         st.stop()
 
     with open(enc_file, "wb") as f:
         f.write(resp.content)
 
-    pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
-    df = pd.read_excel(dec_file)
+    size_enc = os.path.getsize(enc_file)
+    st.write(f"📦 Encrypted file size: {size_enc} bytes")
 
+    try:
+        pyAesCrypt.decryptFile(enc_file, dec_file, password, buffer_size)
+    except Exception as e:
+        st.error(f"❌ Decryption failed: {e}")
+        st.stop()
+
+    # Check decrypted file size
+    size_dec = os.path.getsize(dec_file)
+    st.write(f"📂 Decrypted file size: {size_dec} bytes")
+
+    try:
+        df = pd.read_excel(dec_file)
+    except Exception as e:
+        st.error(f"❌ pd.read_excel failed: {e}")
+        st.stop()
+
+    st.write("✅ Columns in decrypted Excel:", df.columns.tolist())
+    # Clean up
     os.remove(enc_file)
     os.remove(dec_file)
 
 except Exception as e:
-    st.error("❌ Error loading participant data. Please try again later.")
+    st.error(f"❌ Unexpected error: {e}")
     st.stop()
 
 # ====================== CLEAN COLUMN NAMES ======================
