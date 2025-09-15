@@ -81,7 +81,7 @@ except Exception as e:
 
 # ====================== CLEAN COLUMN NAMES ======================
 df.columns = df.columns.str.strip().str.lower()
-
+st.write("Columns found in Excel:", df.columns.tolist())
 if 'email' not in df.columns:
     st.error("❌ 'email' column not found in the registration file.")
     st.stop()
