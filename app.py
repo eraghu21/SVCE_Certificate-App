@@ -55,7 +55,8 @@ st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {do
 # ====================== LOAD & DECRYPT EXCEL ======================
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
-encrypted_url = "https://github.com/eraghu21/SVCE_Certificate-App/blob/main/registrations.xlsx.aes"
+encrypted_url = "https://raw.githubusercontent.com/eraghu21/SVCE_Certificate-App/main/registrations.xlsx.aes
+"
 
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
@@ -76,7 +77,7 @@ try:
     os.remove(dec_file)
 
 except Exception as e:
-    st.error("❌ Error loading participant data. Please try again later.")
+    st.error(f"❌ Error loading participant data: {e}")
     st.stop()
 
 # ====================== CLEAN COLUMN NAMES ======================
