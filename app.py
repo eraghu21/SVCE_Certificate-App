@@ -48,7 +48,7 @@ visit_count = update_visit_count()
 download_total = get_download_count()
 
 # ====================== HEADER ======================
-st.title("Quantum AI: Educating the Next Generation of Professionals - FDP Certificate Generator")
+st.title("SVCE_CSE: Quantum AI - FDP Certificate Generator")
 st.markdown(f"<div style='text-align:right; color:gray;'>👁️ Day Visits: {visit_count}</div>", unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {download_total}</div>", unsafe_allow_html=True)
 
