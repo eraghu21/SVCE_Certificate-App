@@ -55,7 +55,7 @@ st.markdown(f"<div style='text-align:right; color:gray;'>📥 Day Downloads: {do
 # ====================== LOAD & DECRYPT EXCEL ======================
 buffer_size = 64 * 1024
 password = st.secrets["excel_password"]
-encrypted_url = "https://github.com/eraghu21/SVCE_Certificate-App/blob/main/Participants.xlsx%20(2).aes"
+encrypted_url = "https://github.com/eraghu21/SVCE_Certificate-App/blob/main/Participants.xlsx (2).aes"
 
 enc_file = "registrations.xlsx.aes"
 dec_file = "registrations.xlsx"
@@ -103,7 +103,7 @@ except Exception as e:
 # ====================== CLEAN COLUMN NAMES ======================
 df.columns = df.columns.str.strip().str.lower()
 st.write("Columns found in Excel:", df.columns.tolist())
-st.write("DEBUG PASSWORD:", password)
+
 expected_cols = ['email', 'name', 'designation', 'college_name', 'attendance']
 actual_cols = [col.strip().lower() for col in df.columns]
 missing = [col for col in expected_cols if col not in actual_cols]
